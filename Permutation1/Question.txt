@@ -1,28 +1,27 @@
-Interview Coding Questions Experience Sharing
+#Interview Coding Questions Experience Sharing
 
 This a Frontend role question (30 minutes to finish).
 
-Qestion:
+Question:
 Given an array, like this one:
 [2, 4, 0, 1, 7, 2, 4, 3]
 
-Rearrange it, change elements' orders. To make the new array with the maximum pairs (new to old) comparing to elements of original by index with a greater result.
+Rearrange it, change elements' orders. To make the new array with the maximum pairs (new to old elements) by index with a greater comparing result.
 
 Example, here is one of the expected results:
 [4, 2, 1, 2, 0, 3, 7, 4]
 
-If we compare each element indexically, we can see 6 elements greater than old array:
+If we compare each element indexically, we can see 6 elements (should be the highest limit for the array) greater than old array:
 Indices: 0, 2, 3, 5, 6, 7
 
 I used 2 hours and 30 minites to finish it and the testing code to verify the results. I have been too lazy to practice coding questions hard enough.
 
-Here is the code of my version:
+#Thoughts:
 
+At first I took it as an easier one. Tried to create a 2D-Array to hold all the comparing results (1 or 0) and pick a column from a vertical direction of the Matrix with the max sum value.
+As started writing the code until 20 minutes later, I realized, this is a Permutation algorithm question.
 
-At first I took it as an easier one. Tried to create a 2D-Array to hold all the comparing results (1 or 0) and pick a column from a vertical direction of the Matrix and with the max sum value.
-Later started writing the code until 20 minutes, I realized, this is a Permutation algorithm question.
-
-You need to enumerate all the complete combinations without repetitions from all the elements of the array. Compare and add up the comparing results, pick the max one in sum.
+You need to enumerate all the complete combinations without repetitions fror all the elements of the array. Compare and add up the comparing results, pick the max one in sum.
 
 If you worked on Permutation code question, many people know, there is a classic piece of code to do that.
 Hard for me to follow and remember. Sorry, personally a bad mathematic learner.
@@ -32,7 +31,7 @@ However, I got an easier verion to remember and understand. Don't need to refres
 Here is the theory, simulate a customized digits calculator working on your own decimal system.
 Say, your input array has 8 elements, good to simulate an Octal system.
 
-Just keep increasing the digits from 0 until exceed the maximun digits you need. You'll get all the complete combinations of 8 indices from the 8 elements array.
+Just keep increasing the digits from 0 until it exceeds the maximum digits you need. You'll get all the complete combinations of 8 indices from the 8 elements array.
 Filter the combinations, keep only ones without repetitions.
 
 Then, subsequent work should be straight forward.
