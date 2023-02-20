@@ -1,0 +1,83 @@
+<script>
+
+// Check if a complete combination of the arr
+let correctPermutation = (arr) => {
+	const len = arr.length;
+	let checkArr = new Array(len);
+	for (let i = 0; i < len; i++) {
+		if (checkArr[arr[i]] === 1) {
+			return false;
+		}
+		checkArr[arr[i]] = 1;
+	}
+	return true;
+}
+
+// Next permutation
+let incrementPermutation = (arr) => {
+	const len = arr.length;
+	for (let i = len - 1; i >= 0; i--) {
+		if (arr[i] < (len - 1)) {
+			arr[i]++;
+			// finished incrementation
+			return true;
+		}
+		// goto next digit
+		arr[i] = 0;
+	}
+	// reached max value
+	return false;
+}
+
+// Main entry point
+let arrRearrangement = (arr) => {
+	console.log(arr);
+	const len = arr.length;
+	let permutationStyle = new Array(len);
+	permutationStyle.fill(0);
+	let maxPairs = 0;
+	let bestCombination = [];
+	while (true) {
+		let pairs = 0;
+		// form all the permutations
+		if (!incrementPermutation(permutationStyle)) {
+			// reached end of permutation
+			break;
+		}
+		if (correctPermutation(permutationStyle)) {
+			for (let i = 0; i < len; i++) {
+				let target = permutationStyle[i];
+				if (arr[i] < arr[target]) {
+					pairs++;
+				}
+			}
+			if (pairs > maxPairs) {
+				bestCombination = [];
+				maxPairs = pairs;
+				permutationStyle.forEach((value, key) => {
+					bestCombination.push(arr[value]);
+				});
+			}
+		}
+	}
+	return bestCombination;
+}
+
+// Test code
+const testLen = 8;
+let testArr = [];
+
+for (let i = 0; i < testLen; i++) {
+	let value = Math.floor(Math.random() * testLen);
+	testArr.push(value);
+}
+
+let reArr = arrRearrangement(testArr);
+// Output result
+console.log(reArr);
+
+
+</script>
+
+
+
